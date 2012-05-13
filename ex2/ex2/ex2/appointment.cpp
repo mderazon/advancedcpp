@@ -57,3 +57,11 @@ bool appointment::operator==( const appointment& a )
 	return (a.getStartHour() == startHour) && (a.getEndHour() == endHour) && (a.getSubject() == subject);
 }
 
+EAppointmentType appointment::GetType() const
+{
+	return E_BASE_APPOINTMENT;
+}
+
+
+
+

@@ -25,4 +25,10 @@ using namespace std;
 #define noSuchDayError 22;
 #define incorrectAppointmentError 23;
 
+enum EAppointmentType
+{
+	E_BASE_APPOINTMENT,
+	E_EXTENDED_APPOINTMENT
+};
+
 // TODO: reference additional headers your program requires here

@@ -20,3 +20,8 @@ day* calendar::getDay( int dayID ) const
 			throw noSuchDayError;
 	return &(week[dayID-1]);
 }
+
+void calendar::addAppointment( int dayID, float startHour, float endHour, std::string subject )
+{
+
+}

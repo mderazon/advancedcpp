@@ -16,6 +16,8 @@ public:
 	virtual const float getEndHour() const;
 	
 	bool operator== (const appointment& a);
+
+	virtual EAppointmentType GetType() const;
 	
 
 private:
