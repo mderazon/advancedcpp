@@ -6,9 +6,8 @@ public:
 	~calendar();
 
 	virtual day* getDay(int dayID) const;
-	virtual void addAppointment (int dayID, float startHour, float endHour, std::string subject);
-
-
+	void addAppointment( day d, appointment *app);
+	void removeAppointment (day d,appointment *app);
 private:
 	day *week;
 

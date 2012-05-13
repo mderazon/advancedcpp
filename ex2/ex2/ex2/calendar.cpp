@@ -21,7 +21,11 @@ day* calendar::getDay( int dayID ) const
 	return &(week[dayID-1]);
 }
 
-void calendar::addAppointment( int dayID, float startHour, float endHour, std::string subject )
+void calendar::addAppointment( day d, appointment *app)
 {
+	d.addAppointment(app);
+}
+
+void calendar::removeAppointment (day d, appointment *app) {
 
 }
