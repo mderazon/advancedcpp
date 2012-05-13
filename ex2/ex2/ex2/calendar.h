@@ -6,8 +6,8 @@ public:
 	~calendar();
 
 	virtual day* getDay(int dayID) const;
-	void addAppointment( day d, appointment *app);
-	void removeAppointment (day d,appointment *app);
+	virtual void addAppointment( day d, appointment *app);
+	virtual void removeAppointment (day d,appointment *app);
 private:
 	day *week;
 

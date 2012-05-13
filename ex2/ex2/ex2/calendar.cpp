@@ -27,5 +27,5 @@ void calendar::addAppointment( day d, appointment *app)
 }
 
 void calendar::removeAppointment (day d, appointment *app) {
-
+	d.removeAppointment(app);
 }
