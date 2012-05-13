@@ -33,6 +33,9 @@
     <ClInclude Include="calendar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="extendedAppointment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="calendar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="extendedAppointment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

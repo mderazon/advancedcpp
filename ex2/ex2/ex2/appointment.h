@@ -1,10 +1,10 @@
 #include "stdafx.h"
 
-class apppointment {
+class appointment {
 public:
-	apppointment();
-	apppointment(const std::string subject, float startHour, float endHour);
-	~apppointment();
+	appointment();
+	appointment(const std::string subject, float startHour, float endHour);
+	virtual ~appointment();
 
 	virtual void setSubject(const std::string subject);
 	virtual void setStartHour(const float startHour);
@@ -15,7 +15,7 @@ public:
 	virtual const float getStartHour() const;
 	virtual const float getEndHour() const;
 	
-	bool operator== (const apppointment& a);
+	bool operator== (const appointment& a);
 	
 
 private:

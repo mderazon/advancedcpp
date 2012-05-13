@@ -8,16 +8,17 @@ public:
 
 	virtual int getID() const;
 	virtual void setID(int id);
-	virtual void addAppointment(const apppointment& a);
-	virtual void removeAppointment(const apppointment& a);
-	virtual const apppointment& findAppointment(float StartHour) const;
+	virtual void addAppointment(appointment* a);
+	virtual void removeAppointment(appointment* a);
+	virtual appointment& findAppointment(float StartHour);
 	virtual const std::string& printDay() const;
+	virtual void cleanDay();
 	
 
 
 private:
 	int id;
-	list<apppointment> apppointments;
+	list<appointment*> apppointments;
 	
 
 };

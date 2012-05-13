@@ -82,6 +82,7 @@
     <ClInclude Include="appointment.h" />
     <ClInclude Include="calendar.h" />
     <ClInclude Include="day.h" />
+    <ClInclude Include="extendedAppointment.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -89,6 +90,7 @@
     <ClCompile Include="appointment.cpp" />
     <ClCompile Include="calendar.cpp" />
     <ClCompile Include="day.cpp" />
+    <ClCompile Include="extendedAppointment.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

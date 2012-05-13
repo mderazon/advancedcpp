@@ -17,9 +17,12 @@
 #include "day.h"
 #include "appointment.h"
 #include "calendar.h"
+#include "extendedAppointment.h"
 using namespace std;
 
 #define no_such_appointment_error 20;
 #define conflicting_appointments_error 21;
+#define noSuchDayError 22;
+#define incorrectAppointmentError 23;
 
 // TODO: reference additional headers your program requires here

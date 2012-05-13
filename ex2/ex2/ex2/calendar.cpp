@@ -2,57 +2,21 @@
 
 calendar::calendar() 
 {
-	int i;
-	for (i=0 ; i<7 ; i++)
-		week[i].setID(i+1);
+	week = new day[7];
 }
 
 
 calendar::~calendar()
 {
-	delete[] this->week;
-	
+	int i;
+	for (i=0;i<7;i++)
+		delete (week+i);
 }
 
- void addAppoinment(int dayID, const apppointment& app)
+
+day* calendar::getDay( int dayID ) const
 {
-	try
-	{
-		
-	}
-
-	catch (int e) 
-	{
-
-	}
-}
-
- void removeAppointment(int dayID, apppointment& app)
-{
-
-}
-
-void calendar::cleanCalander()
-{
-
-}
-
-const apppointment& calendar::findAppointment( int dayID,float startHour )
-{
-
-}
-
-void calendar::copyAppointment( apppointment app,float startHour )
-{
-
-}
-
-void calendar::copyAppointment( apppointment app,day targetDay )
-{
-
-}
-
-void calendar::printCalender() const
-{
-
+	if (dayID < 1 || dayID >7)
+			throw noSuchDayError;
+	return &(week[dayID-1]);
 }
