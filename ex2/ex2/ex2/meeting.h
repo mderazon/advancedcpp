@@ -2,9 +2,16 @@
 
 class meeting
 {
-public:
+public:	
+	enum EMeetingType
+	{
+		E_MEETING,
+		E_EXTENDED_MEETING
+	};
+
 	meeting(const std::string subject, const std::time_t startHour, const std::time_t endHour);
 	virtual ~meeting();
+	virtual EMeetingType GetType() const;
 
 	void setSubject(const std::string subject);
 	void setStartHour(const std::time_t startHour);
@@ -16,6 +23,7 @@ public:
 	
 	bool operator== (const meeting& a);
 
+	
 	
 private:
 	std::string subject;

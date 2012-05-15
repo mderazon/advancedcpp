@@ -2,6 +2,7 @@
 #include "meeting.h"
 
 
+
 meeting::meeting(const std::string subject, const std::time_t startHour, const std::time_t endHour)
 {
 
@@ -56,5 +57,10 @@ bool meeting::operator==( const meeting& a )
 	return (a.getStartHour() == startHour) && (a.getEndHour() == endHour) && (a.getSubject() == subject);
 }
 
+
+meeting::EMeetingType meeting::GetType() const
+{
+	return meeting::E_MEETING;
+}
 
 

@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClInclude Include="calendar.h" />
     <ClInclude Include="day.h" />
+    <ClInclude Include="extendedCalendar.h" />
     <ClInclude Include="extendedMeeting.h" />
     <ClInclude Include="meeting.h" />
     <ClInclude Include="participant.h" />
@@ -90,6 +91,7 @@
   <ItemGroup>
     <ClCompile Include="calendar.cpp" />
     <ClCompile Include="day.cpp" />
+    <ClCompile Include="extendedCalendar.cpp" />
     <ClCompile Include="extendedMeeting.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="meeting.cpp" />
