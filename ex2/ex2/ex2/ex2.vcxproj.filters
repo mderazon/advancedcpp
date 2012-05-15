@@ -24,21 +24,30 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="day.h">
+    <ClInclude Include="participant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="appointment.h">
+    <ClInclude Include="meeting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="day.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="calendar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="extendedAppointment.h">
+    <ClInclude Include="extendedMeeting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="participant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="meeting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -47,13 +56,10 @@
     <ClCompile Include="day.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="appointment.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="calendar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="extendedAppointment.cpp">
+    <ClCompile Include="extendedMeeting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

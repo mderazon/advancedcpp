@@ -1,15 +1,15 @@
-#include "stdafx.h"
+#include "day.h"
 
 class calendar {
 public:
 	calendar();
 	~calendar();
 
-	virtual day* getDay(int dayID) const;
-	virtual void addAppointment( day d, appointment *app);
-	virtual void removeAppointment (day d,appointment *app);
+	day getDay(int dayID) const;
+	void addMeeting( day d, meeting *m);
+	void removeMeeting (day d,meeting *m_);
+	void changeMeeting (day old_d, meeting *old_m, day new_d,meeting *new_m);
+
 private:
-	day *week;
-
-
+	std::vector<day> week;
 };

@@ -1,48 +1,18 @@
 #include "stdafx.h"
+#include "day.h"
 
 
-day::day(int id) 
+day::day() {}
+
+day::day(int id) : id(id) {}
+
+day::~day(void)
 {
-	this->id=id;
 }
 
-int day::getID() const 
+int day::getID() const
 {
 	return this->id;
-}
-
-const std::string& day::printDay() const
-{
-	std::stringstream s;
-	int i;
-	s << "Day Id:" << this->id << "\n";
-	list<appointment*>::const_iterator cii;
-	for(cii=apppointments.begin(), i=1; cii!=apppointments.end(); cii++,i++)
-		s<<i<<". Subject: "<< (*cii)->getSubject() << "\tTime: " << (*cii)->getStartHour() << " - " << (*cii)->getEndHour << "\n";
-	return s.str();
-}
-
-appointment& day::findAppointment( float StartHour )
-{
-	list<appointment*>::iterator cii= apppointments.begin();
-	for(;cii!=apppointments.end(); cii++)
-		if ((*cii)->getStartHour() == StartHour)
-			return **cii;
-	throw no_such_appointment_error;
-}
-
-void day::removeAppointment(appointment* a)
-{
-	apppointments.remove(a);
-}
-
-void day::addAppointment(appointment* a)
-{
-	list<appointment*>::const_iterator cii;
-	for(cii=apppointments.begin(); cii!=apppointments.end(); cii++)
-			if (  (a->getStartHour() > (*cii)->getStartHour() && (a->getStartHour() < (*cii)->getEndHour())) || (a->getEndHour() > (*cii)->getStartHour() && (a->getEndHour() < (*cii)->getEndHour()))  )
-				throw conflicting_appointments_error;
-		apppointments.insert(cii,a);
 }
 
 void day::setID( int id )
@@ -50,8 +20,40 @@ void day::setID( int id )
 	this->id = id;
 }
 
+void day::addMeeting( meeting* m )
+{
+	std::list<meeting*>::iterator it;
+	for(it = meetings.begin(); it != meetings.end(); it++)
+		if ((m->getStartHour() > (*it)->getStartHour() && (m->getStartHour() < (*it)->getEndHour())) ||
+			(m->getEndHour() > (*it)->getStartHour() && (m->getEndHour() < (*it)->getEndHour())))
+			throw conflicting_meetings_error;
+	meetings.insert(it,m);
+}
+
+void day::removeMeeting( meeting* a )
+{
+	meetings.remove(a);
+}
+
+meeting& day::findMeeting( float StartHour ) const
+{
+	std::list<meeting*>::const_iterator it;
+	for(it = meetings.begin(); it != meetings.end(); it++)
+	{
+		if ((*it)->getStartHour() == StartHour)
+		{
+			return **it;
+		}
+	}
+	throw no_such_meeting_error;
+}
+
+//std::string day::printDay()
+//{
+//
+//}
+
 void day::cleanDay()
 {
-	apppointments.clear();
-
+	meetings.clear();
 }

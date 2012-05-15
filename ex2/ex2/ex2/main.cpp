@@ -2,7 +2,7 @@
 
 int main()
 {
-	int choice;
+	/*int choice;
 	while(1)  {
 		cout <<  "1. Add appointments." 	<< endl ;            
 		cout <<  "2. Remove appointment" 	<< endl ;           
@@ -27,6 +27,6 @@ int main()
 			printDiary(…);     	break;
 		case 6:				break;
 		}		
-	}
+	}*/
 
 }

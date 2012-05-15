@@ -1,24 +1,28 @@
-#include "stdafx.h"
-
-class day {
+#pragma once
+#include "meeting.h"
+class day
+{
 public:
 	day();
 	day(int id);
 	~day();
 
-	virtual int getID() const;
-	virtual void setID(int id);
-	virtual void addAppointment(appointment* a);
-	virtual void removeAppointment(appointment* a);
-	virtual appointment& findAppointment(float StartHour);
-	virtual const std::string& printDay() const;
-	virtual void cleanDay();
-	
+	int getID() const;
 
+	void setID(int id);
+
+	void addMeeting(meeting* m);
+
+	void removeMeeting(meeting* m);
+
+	meeting& findMeeting(float StartHour) const;
+
+	//std::string printDay();
+
+	void cleanDay();
 
 private:
 	int id;
-	list<appointment*> apppointments;
-	
-
+	std::list<meeting*> meetings;
 };
+
