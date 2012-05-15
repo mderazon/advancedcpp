@@ -1,5 +1,7 @@
 #pragma once
 #include "meeting.h"
+#include "extendedMeeting.h"
+
 class day
 {
 public:
