@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// converts a time in the format hh:mm into a time_t object
+// converts a time in the format hh:mm into a time_t object. day is 1-7
 std::time_t getTime(int day, std::string time)
 {
 	int h, m;
@@ -20,6 +20,14 @@ std::time_t getTime(int day, std::string time)
 	return std::mktime(&timeinfo);
 }
 
+// return day of the week from time_t type
+int getDay(meeting* m)
+{
+	std::time_t t = m->getStartHour();
+	struct tm *tm = std::gmtime(&t);
+	return tm->tm_wday + 1;
+}
+
 
 int main()
 {
@@ -34,11 +42,11 @@ int main()
 		meeting* m4 = new meeting("Subject 4", getTime(1, "11:00"),getTime(1, "13:00"));	// bad meeting - conflicts with meeting 1
 		meeting* m5 = new meeting("Subject 5", getTime(3, "10:00"),getTime(3, "12:00"));	// good meeting
 		// add meetings to calendar
-		cal->addMeeting(1,m1);
-		cal->addMeeting(1,m2);
-//		cal->addMeeting(1,m3);
-		cal->addMeeting(1,m4);
-		cal->addMeeting(3,m5);
+		cal->addMeeting(getDay(m1),m1);
+		cal->addMeeting(getDay(m2),m2);
+//		cal->addMeeting(getDay(m3),m3);	// should raise INCORRECT_MEETING_VALUES_ERROR
+//		cal->addMeeting(getDay(m4),m4);	// should raise CONFLICTING_MEETINGS_ERROR
+		cal->addMeeting(getDay(m5),m5);
 	}
 	catch (int exception)
 	{
