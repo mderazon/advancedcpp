@@ -51,9 +51,16 @@ int runCalendarExample()
 		cal->addMeeting(getDay(m5),m5);
 		cout << cal->printCalendar();
 		// remove meetings from calendar
+		cout << "Removing a meeting from calendar" << endl;
 		cal->removeMeeting(getDay(m1),m1);
-
-
+		cout << cal->printCalendar();
+		// show polymorphism 
+		participant p1(1, "Moshe");
+		std::list<participant> plist1;
+		plist1.insert(plist1.begin(),p1);
+		extendedMeeting* m6 = new extendedMeeting("Subject 6", getTime(7, "18:00"),getTime(7, "19:00"), plist1);	// good meeting
+		cal->addMeeting(getDay(m6), m6);
+		cout << cal->printCalendar();
 
 	}
 	catch (int exception)
@@ -102,13 +109,15 @@ int runExtendedCalendarExample()
 		extendedMeeting* m5 = new extendedMeeting("Subject 5", getTime(3, "10:00"),getTime(3, "12:00"), plist1);	// good meeting
 		// add meetings to calendar
 		ecal->addMeeting(getDay(m1),m1);
-//		ecal->addMeeting(getDay(m2),m2);
-////		ecal->addMeeting(getDay(m3),m3);	// should raise INCORRECT_MEETING_VALUES_ERROR
-////		ecal->addMeeting(getDay(m4),m4);	// should raise CONFLICTING_MEETINGS_ERROR
+		ecal->addMeeting(getDay(m2),m2);
+//		ecal->addMeeting(getDay(m3),m3);	// should raise CONFLICTING_MEETINGS_ERROR
+		ecal->addMeeting(getDay(m4),m4);	// should raise CONFLICTING_MEETINGS_ERROR
 //		ecal->addMeeting(getDay(m5),m5);
-//		cout << ecal->printCalendar();
+		cout << ecal->printCalendar();
 //		// remove meetings from calendar
-//		ecal->removeMeeting(getDay(m1),m1);
+		cout << "Removing a meeting from calendar" << endl;
+		ecal->removeMeeting(getDay(m1),m1);
+		cout << ecal->printCalendar();
 
 
 
@@ -133,41 +142,5 @@ int main()
 {
 	runCalendarExample();
 	runExtendedCalendarExample();
-	
-
-	// Main menu
-	int choice;
-	//while(1)  {
-	//	cout <<  "1. Add meeting."		<< endl ;            
-	//	cout <<  "2. Remove meeting." 	<< endl ;           
-	//	cout <<  "3. Clean Calendar."	<< endl ;         
-	//	cout <<  "4. Find meeting."		<< endl ;       
-	//	cout <<  "5. Print Calendar."	<< endl ;           
-	//	cout <<  "6. Quit." 			<< endl ;      
-	//	cout <<  "Enter your choice:"	<< endl ;      
-	//	
-	//	cin >> choice;
-
-	//	switch (choice)
-	//	{
-	//	case 1:		 
-	//		//addMeeting ());
-	//		break; 			
-	//	case 2:		
-	//		//rmvMeeting();
-	//		break;
-	//	case 3:
-	//		//cleanCalendar();
-	//		break;
-	//	case 4:
-	//		//findMeeting();
-	//		break;
-	//	case 5:
-	//		//printCalendar();
-	//		break;
-	//	case 6:
-	//		exit(0);
-	//	}		
-	//}
 }
 

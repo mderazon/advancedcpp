@@ -19,7 +19,7 @@ public:
 
 	meeting& findMeeting(std::time_t StartHour) const;
 
-	const std::list<meeting*> getMeetings() const;
+	std::list<meeting*> getMeetings() const;
 	
 	void cleanDay();
 

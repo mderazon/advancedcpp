@@ -78,7 +78,7 @@ meeting& day::findMeeting( std::time_t StartHour ) const
 	throw MEETING_NOT_FOUND_ERROR;
 }
 
-const std::list<meeting*> day::getMeetings() const
+std::list<meeting*> day::getMeetings() const
 {
 	return this->meetings;
 }

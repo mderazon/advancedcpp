@@ -15,7 +15,7 @@ public:
 	virtual void changeMeeting(int old_dayId, meeting *old_m, int new_dayId,meeting *new_m);
 	virtual const std::string	printCalendar();
 
-private:
+protected:
 	std::vector<day> week;
 };
 #endif
