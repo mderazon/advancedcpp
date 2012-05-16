@@ -28,8 +28,7 @@ int getDay(meeting* m)
 	return tm->tm_wday + 1;
 }
 
-
-int main()
+void calendarExample()
 {
 	// create a base calendar
 	calendar* cal = new calendar();	
@@ -44,13 +43,13 @@ int main()
 		// add meetings to calendar
 		cal->addMeeting(getDay(m1),m1);
 		cal->addMeeting(getDay(m2),m2);
-//		cal->addMeeting(getDay(m3),m3);	// should raise INCORRECT_MEETING_VALUES_ERROR
-//		cal->addMeeting(getDay(m4),m4);	// should raise CONFLICTING_MEETINGS_ERROR
+		//		cal->addMeeting(getDay(m3),m3);	// should raise INCORRECT_MEETING_VALUES_ERROR
+		//		cal->addMeeting(getDay(m4),m4);	// should raise CONFLICTING_MEETINGS_ERROR
 		cal->addMeeting(getDay(m5),m5);
 		cout << cal->printCalendar();
 		// remove meetings from calendar
 		cal->removeMeeting(getDay(m1),m1);
-		
+
 
 
 	}
@@ -67,10 +66,20 @@ int main()
 			exit(INCORRECT_MEETING_VALUES_ERROR);
 		}
 	}
+}
+
+void extendedCalendarExample()
+{
+
+}
+
+int main()
+{
+	calendarExample();
 	
 
 	// Main menu
-	//int choice;
+	int choice;
 	//while(1)  {
 	//	cout <<  "1. Add meeting."		<< endl ;            
 	//	cout <<  "2. Remove meeting." 	<< endl ;           
