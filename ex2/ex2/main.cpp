@@ -28,7 +28,7 @@ int getDay(meeting* m)
 	return tm->tm_wday + 1;
 }
 
-void calendarExample()
+int runCalendarExample()
 {
 	// create a base calendar
 	calendar* cal = new calendar();	
@@ -66,6 +66,7 @@ void calendarExample()
 			exit(INCORRECT_MEETING_VALUES_ERROR);
 		}
 	}
+	return 0;
 }
 
 void extendedCalendarExample()
@@ -75,7 +76,7 @@ void extendedCalendarExample()
 
 int main()
 {
-	calendarExample();
+	runCalendarExample();
 	
 
 	// Main menu
