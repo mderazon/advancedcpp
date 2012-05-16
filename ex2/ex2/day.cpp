@@ -78,10 +78,10 @@ meeting& day::findMeeting( std::time_t StartHour ) const
 	throw MEETING_NOT_FOUND_ERROR;
 }
 
-//std::string day::printDay()
-//{
-//
-//}
+const std::list<meeting*> day::getMeetings() const
+{
+	return this->meetings;
+}
 
 void day::cleanDay()
 {

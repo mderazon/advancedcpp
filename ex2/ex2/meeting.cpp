@@ -6,7 +6,7 @@
 meeting::meeting(const std::string subject, const std::time_t startHour, const std::time_t endHour)
 {
 
-	if (std::gmtime(&startHour)->tm_wday == std::gmtime(&endHour)->tm_wday && startHour < endHour)
+	if (std::localtime(&startHour)->tm_wday == std::localtime(&endHour)->tm_wday && startHour < endHour)
 	{
 		this->subject = subject;
 		this->startHour = startHour;

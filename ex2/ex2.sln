@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 11
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ex2", "ex2\ex2.vcxproj", "{2317F1C7-71F5-37DC-930D-02C2A0DCA197}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ex2", "ex2\ex2.vcxproj", "{E7BAF6DC-A384-3BE6-0034-4E1964541897}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -13,10 +13,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2317F1C7-71F5-37DC-930D-02C2A0DCA197}.Debug|Win32.ActiveCfg = Debug|Win32
-		{2317F1C7-71F5-37DC-930D-02C2A0DCA197}.Debug|Win32.Build.0 = Debug|Win32
-		{2317F1C7-71F5-37DC-930D-02C2A0DCA197}.Release|Win32.ActiveCfg = Release|Win32
-		{2317F1C7-71F5-37DC-930D-02C2A0DCA197}.Release|Win32.Build.0 = Release|Win32
+		{E7BAF6DC-A384-3BE6-0034-4E1964541897}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E7BAF6DC-A384-3BE6-0034-4E1964541897}.Debug|Win32.Build.0 = Debug|Win32
+		{E7BAF6DC-A384-3BE6-0034-4E1964541897}.Release|Win32.ActiveCfg = Release|Win32
+		{E7BAF6DC-A384-3BE6-0034-4E1964541897}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

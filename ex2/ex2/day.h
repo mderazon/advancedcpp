@@ -19,8 +19,8 @@ public:
 
 	meeting& findMeeting(std::time_t StartHour) const;
 
-	//std::string printDay();
-
+	const std::list<meeting*> getMeetings() const;
+	
 	void cleanDay();
 
 private:
