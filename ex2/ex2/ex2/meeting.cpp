@@ -14,7 +14,7 @@ meeting::meeting(const std::string subject, const std::time_t startHour, const s
 	}
 	else
 	{
-		throw incorrect_meeting_error;
+		throw INCORRECT_MEETING_VALUES_ERROR;
 	}	
 }
 

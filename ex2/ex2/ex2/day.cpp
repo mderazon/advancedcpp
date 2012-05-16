@@ -44,7 +44,7 @@ void day::addMeeting( meeting* m )
 					{
 						if (part_it2->getId() == part_it->getId())
 						{
-							throw conflicting_meetings_error;
+							throw CONFLICTING_MEETINGS_ERROR;
 						}
 					}
 				}
@@ -52,7 +52,7 @@ void day::addMeeting( meeting* m )
 			else
 			{
 				// regular meeting - time conflict
-				throw conflicting_meetings_error;
+				throw CONFLICTING_MEETINGS_ERROR;
 			}			
 		}
 	}
@@ -75,7 +75,7 @@ meeting& day::findMeeting( std::time_t StartHour ) const
 			return **it;
 		}
 	}
-	throw no_such_meeting_error;
+	throw MEETING_NOT_FOUND_ERROR;
 }
 
 //std::string day::printDay()

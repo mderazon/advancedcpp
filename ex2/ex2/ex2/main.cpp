@@ -28,27 +28,29 @@ int main()
 	try
 	{
 		//create couple of base meetings
-		meeting* m1 = new meeting("Subject 1", getTime(1, "10:00"),getTime(1, "12:00")); // good meeting
-		//meeting* m2 = new meeting("Subject 2", getTime(1, "12:00"),getTime(1, "10:00")); // bad meeting - end time < start time
-		meeting* m3 = new meeting("Subject 3", getTime(1, "11:00"),getTime(1, "13:00")); // bad meeting - conflicts with meeting 1
-		meeting* m4 = new meeting("Subject 4", getTime(3, "10:00"),getTime(3, "12:00")); // good meeting
+		meeting* m1 = new meeting("Subject 1", getTime(1, "10:00"),getTime(1, "12:00"));	// good meeting
+		meeting* m2 = new meeting("Subject 2", getTime(1, "14:00"),getTime(1, "16:00"));	// good meeting
+//		meeting* m3 = new meeting("Subject 3", getTime(1, "12:00"),getTime(1, "10:00"));	// bad meeting - end time < start time
+		meeting* m4 = new meeting("Subject 4", getTime(1, "11:00"),getTime(1, "13:00"));	// bad meeting - conflicts with meeting 1
+		meeting* m5 = new meeting("Subject 5", getTime(3, "10:00"),getTime(3, "12:00"));	// good meeting
 		// add meetings to calendar
 		cal->addMeeting(1,m1);
-		//cal->addMeeting(1,m2);
-		cal->addMeeting(1,m3);
-		cal->addMeeting(3,m4);
+		cal->addMeeting(1,m2);
+//		cal->addMeeting(1,m3);
+		cal->addMeeting(1,m4);
+		cal->addMeeting(3,m5);
 	}
 	catch (int exception)
 	{
-		if (exception == conflicting_meetings_error)
+		if (exception == CONFLICTING_MEETINGS_ERROR)
 		{
 			cout << "Error: Conflicting meetings";
-			exit(conflicting_meetings_error);
+			exit(CONFLICTING_MEETINGS_ERROR);
 		}
-		else if (exception == incorrect_meeting_error)
+		else if (exception == INCORRECT_MEETING_VALUES_ERROR)
 		{
 			cout << "Error: Incorrect meeting info";
-			exit(incorrect_meeting_error);
+			exit(INCORRECT_MEETING_VALUES_ERROR);
 		}
 	}
 	

@@ -14,10 +14,10 @@
 #include <vector>
 #include <ctime>
 
-#define no_such_meeting_error 20
-#define conflicting_meetings_error 21
-#define no_such_day_error 22
-#define incorrect_meeting_error 23
+#define MEETING_NOT_FOUND_ERROR 20
+#define CONFLICTING_MEETINGS_ERROR 21
+#define NO_SUCH_DAY_ERROR 22
+#define INCORRECT_MEETING_VALUES_ERROR 23
 
 
 

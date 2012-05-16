@@ -21,21 +21,21 @@ calendar::~calendar()
 day calendar::getDay( int dayId ) const
 {
 	if (dayId < 1 || dayId >7)
-			throw no_such_day_error;
+			throw NO_SUCH_DAY_ERROR;
 	return week[dayId-1];
 }
 
 void calendar::addMeeting( int dayId, meeting *m)
 {
 	if (dayId < 1 || dayId >7)
-		throw no_such_day_error;
+		throw NO_SUCH_DAY_ERROR;
 	week[dayId-1].addMeeting(m);
 }
 
 void calendar::removeMeeting(int dayId, meeting *m)
 {
 	if (dayId < 1 || dayId >7)
-		throw no_such_day_error;
+		throw NO_SUCH_DAY_ERROR;
 	week[dayId-1].removeMeeting(m);
 }
 
