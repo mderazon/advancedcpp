@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "calendar.h"
+#include "extendedCalendar.h"
+#include "participant.h"
+
 
 using namespace std;
 
@@ -31,7 +34,7 @@ int getDay(meeting* m)
 int runCalendarExample()
 {
 	// create a base calendar
-	calendar* cal = new calendar();	
+	calendar* cal = new calendar();
 	try
 	{
 		//create couple of base meetings
@@ -69,14 +72,67 @@ int runCalendarExample()
 	return 0;
 }
 
-void extendedCalendarExample()
+int runExtendedCalendarExample()
 {
+	// create an extended calendar
+	extendedCalendar* ecal = new extendedCalendar();	
+	// create couple of participants
+	participant p1(1, "Moshe");
+	participant p2(2, "David");
+	participant p3(3, "Simcha");
+	participant p4(4, "Natalie");
+	participant p5(5, "Shelly");
+	std::list<participant> plist1;
+	std::list<participant> plist2;
+	std::list<participant> plist3;
+	plist1.insert(plist1.begin(),p1);
+	plist1.insert(plist1.begin(),p2);
+	plist2.insert(plist2.begin(),p3);
+	plist2.insert(plist2.begin(),p4);
+	plist2.insert(plist2.begin(),p5);
+	plist3.insert(plist3.begin(),p3);
 
+	try
+	{
+		//create couple of meetings
+		extendedMeeting* m1 = new extendedMeeting("Subject 1", getTime(1, "10:00"),getTime(1, "12:00"), plist1);	// good meeting
+		extendedMeeting* m2 = new extendedMeeting("Subject 2", getTime(1, "10:00"),getTime(1, "12:00"), plist2);	// good meeting - different people
+		extendedMeeting* m3 = new extendedMeeting("Subject 3", getTime(1, "11:00"),getTime(1, "12:00"), plist3);	// bad meeting - same poeple same time as m2
+		extendedMeeting* m4 = new extendedMeeting("Subject 4", getTime(1, "14:00"),getTime(1, "16:00"), plist3);	// bad meeting - conflicts with meeting 1
+		extendedMeeting* m5 = new extendedMeeting("Subject 5", getTime(3, "10:00"),getTime(3, "12:00"), plist1);	// good meeting
+		// add meetings to calendar
+		ecal->addMeeting(getDay(m1),m1);
+//		ecal->addMeeting(getDay(m2),m2);
+////		ecal->addMeeting(getDay(m3),m3);	// should raise INCORRECT_MEETING_VALUES_ERROR
+////		ecal->addMeeting(getDay(m4),m4);	// should raise CONFLICTING_MEETINGS_ERROR
+//		ecal->addMeeting(getDay(m5),m5);
+//		cout << ecal->printCalendar();
+//		// remove meetings from calendar
+//		ecal->removeMeeting(getDay(m1),m1);
+
+
+
+	}
+	catch (int exception)
+	{
+		if (exception == CONFLICTING_MEETINGS_ERROR)
+		{
+			cout << "Error: Conflicting meetings";
+			exit(CONFLICTING_MEETINGS_ERROR);
+		}
+		else if (exception == INCORRECT_MEETING_VALUES_ERROR)
+		{
+			cout << "Error: Incorrect meeting info";
+			exit(INCORRECT_MEETING_VALUES_ERROR);
+		}
+	}
+	return 0;
 }
 
 int main()
 {
 	runCalendarExample();
+	runExtendedCalendarExample();
 	
 
 	// Main menu

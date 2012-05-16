@@ -1,3 +1,7 @@
+#pragma once
+#ifndef CALENDAR
+#define CALENDAR
+
 #include "day.h"
 
 class calendar {
@@ -14,3 +18,4 @@ public:
 private:
 	std::vector<day> week;
 };
+#endif

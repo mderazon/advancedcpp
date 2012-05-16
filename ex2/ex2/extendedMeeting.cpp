@@ -2,9 +2,9 @@
 #include "extendedMeeting.h"
 
 
-extendedMeeting::extendedMeeting( const std::string subject, std::time_t startHour, std::time_t endHour,std::list<participant> p ) : meeting(subject,startHour,endHour)
+extendedMeeting::extendedMeeting( const std::string subject, std::time_t startHour, std::time_t endHour,std::list<participant> p ) : meeting(subject,startHour,endHour), participants(p)
 {
-	this->participants = p;
+
 }
 
 extendedMeeting::~extendedMeeting()
