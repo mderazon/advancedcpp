@@ -17,7 +17,7 @@ public:
 
 	void removeMeeting(meeting* m);
 
-	meeting& findMeeting(float StartHour) const;
+	meeting& findMeeting(std::time_t StartHour) const;
 
 	//std::string printDay();
 

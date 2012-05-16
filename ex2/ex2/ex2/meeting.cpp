@@ -12,9 +12,10 @@ meeting::meeting(const std::string subject, const std::time_t startHour, const s
 		this->startHour = startHour;
 		this->endHour = endHour;
 	}
-	//if (startHour < 0 || startHour >23 || endHour < 0 || endHour >23 || endHour >= startHour)
-	throw incorrect_meeting_error;
-	
+	else
+	{
+		throw incorrect_meeting_error;
+	}	
 }
 
 meeting::~meeting() {}

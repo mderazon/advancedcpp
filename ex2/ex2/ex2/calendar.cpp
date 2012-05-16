@@ -5,7 +5,7 @@ calendar::calendar() : week(7)
 {
 	for (int i = 0; i<7; i++)
 	{
-		week[i+1].setID(i+1);
+		week[i].setID(i+1);
 	}
 }
 
@@ -18,24 +18,28 @@ calendar::~calendar()
 	}		
 }
 
-day calendar::getDay( int dayID ) const
+day calendar::getDay( int dayId ) const
 {
-	if (dayID < 1 || dayID >7)
+	if (dayId < 1 || dayId >7)
 			throw no_such_day_error;
-	return week[dayID-1];
+	return week[dayId-1];
 }
 
-void calendar::addMeeting( day d, meeting *m)
+void calendar::addMeeting( int dayId, meeting *m)
 {
-	d.addMeeting(m);
+	if (dayId < 1 || dayId >7)
+		throw no_such_day_error;
+	week[dayId-1].addMeeting(m);
 }
 
-void calendar::removeMeeting(day d, meeting *m)
+void calendar::removeMeeting(int dayId, meeting *m)
 {
-	d.removeMeeting(m);
+	if (dayId < 1 || dayId >7)
+		throw no_such_day_error;
+	week[dayId-1].removeMeeting(m);
 }
 
-void calendar::changeMeeting( day old_d, meeting *old_m, day new_d,meeting *new_m )
+void calendar::changeMeeting( int old_dayID, meeting *old_m, int new_dayId,meeting *new_m )
 {
 	//TODO implement with try/catch
 }

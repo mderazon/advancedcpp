@@ -60,12 +60,12 @@ void day::addMeeting( meeting* m )
 	meetings.insert(it,m);
 }
 
-void day::removeMeeting( meeting* a )
+void day::removeMeeting( meeting* m )
 {
-	meetings.remove(a);
+	meetings.remove(m);
 }
 
-meeting& day::findMeeting( float StartHour ) const
+meeting& day::findMeeting( std::time_t StartHour ) const
 {
 	std::list<meeting*>::const_iterator it;
 	for(it = meetings.begin(); it != meetings.end(); it++)
