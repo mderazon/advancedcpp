@@ -47,6 +47,11 @@ int main()
 //		cal->addMeeting(getDay(m3),m3);	// should raise INCORRECT_MEETING_VALUES_ERROR
 //		cal->addMeeting(getDay(m4),m4);	// should raise CONFLICTING_MEETINGS_ERROR
 		cal->addMeeting(getDay(m5),m5);
+		// remove meetings from calendar
+		cal->removeMeeting(getDay(m1),m1);	// should be fine
+		// 
+
+
 	}
 	catch (int exception)
 	{
