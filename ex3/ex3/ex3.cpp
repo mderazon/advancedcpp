@@ -15,13 +15,12 @@ public:
 	~tContainer_t();
 
 	bool IsEmpty();
-	T& GetFirst() const;
-	T& GetLast() const;
-	T& Find(T const& item) const;
+	T& GetFirst() ;
+	T& GetLast();
+	T& Find(T const& item);
 	T& operator [](unsigned i);
 	int Size();
-	void Insert(T* const item);
-	
+	void Insert(T* const item);	
 	std::string Print();
 };
 
@@ -43,9 +42,8 @@ T& tContainer_t<T, R>::operator[]( unsigned i )
 	}
 }
 
-
 template<typename T, typename R>
-T& tContainer_t<T, R>::Find( T const& item ) const
+T& tContainer_t<T, R>::Find( T const& item ) 
 {
 	// using lambda expressions, found in most modern compilers
 	typename R::const_iterator it = std::find_if(Container.begin(), Container.end(),  [item](const T* v) { return *v == item; });
@@ -89,7 +87,7 @@ int tContainer_t<T, R>::Size()
 }
 
 template<typename T, typename R>
-T& tContainer_t<T, R>::GetLast() const
+T& tContainer_t<T, R>::GetLast()
 {
 	if (!Container.empty())
 	{
@@ -105,7 +103,7 @@ T& tContainer_t<T, R>::GetLast() const
 }
 
 template<typename T, typename R>
-T& tContainer_t<T, R>::GetFirst() const
+T& tContainer_t<T, R>::GetFirst()
 {
 	if (!Container.empty())
 	{
@@ -140,7 +138,7 @@ tContainer_t<T, R>::~tContainer_t()
 int main() 
 {
 	// Vector example
-	std::cout <<"Vector example" << std::endl << "--------------" << std::endl;
+	std::cout <<"vector<double*> example" << std::endl << "-----------------------" << std::endl;
 	try
 	{
 		tContainer_t<double, std::vector<double*> > v;
@@ -150,13 +148,13 @@ int main()
 		v.Insert(&f1);
 		v.Insert(&f2);
 		v.Insert(&f3);
-		std::cout << "Found " << v.Find(1.1) << std::endl;
-		std::cout << "v[2] = " << v[2] << std::endl;
-		std::cout << v.Print();
-		std::cout << "container empty ? : " << v.IsEmpty()<< std::endl
-			<< "container size: " << v.Size() << std::endl
-			<<"first element: " << v.GetFirst() << std::endl
-			<< "last element: " << v.GetLast() << std::endl;	
+		std::cout << "v.print()		: "<< v.Print();
+		std::cout << "v.Find(1.1)		: "<< "Found " << v.Find(1.1) << std::endl;
+		std::cout << "v[2]			: " << v[2] << std::endl;		
+		std::cout << "v.IsEmpty()		: " << v.IsEmpty()<< std::endl;
+		std::cout << "v.Size()		: " << v.Size() << std::endl;
+		std::cout << "v.GetFirst()		: " << v.GetFirst() << std::endl;
+		std::cout << "v.GetLast()		: " << v.GetLast() << std::endl;	
 	}	
 	catch (Exception& e)
 	{
@@ -166,7 +164,7 @@ int main()
 	
 
 	// List example
-	std::cout << std::endl <<"List example" << std::endl << "------------" << std::endl;
+	std::cout << std::endl <<"list<int*> example" << std::endl << "------------------" << std::endl;
 	try
 	{
 		tContainer_t<int, std::list<int*> > l;
@@ -176,11 +174,13 @@ int main()
 		l.Insert(&i1);
 		l.Insert(&i2);
 		l.Insert(&i3);	
-		std::cout << l.Print();
-		std::cout << "container empty ? : " << l.IsEmpty()<< std::endl
-			<< "container size: " << l.Size() << std::endl
-			<<"first element: " << l.GetFirst() << std::endl
-			<< "last element: " << l.GetLast() << std::endl;
+		std::cout << "l.print()		: " << l.Print();
+		std::cout << "l.Find(2)		: " << "Found " << l.Find(2) << std::endl;
+		std::cout << "l[0]			: " << l[0] << std::endl;		
+		std::cout << "l.IsEmpty()		: " << l.IsEmpty()<< std::endl;
+		std::cout << "l.Size()		: " << l.Size() << std::endl;
+		std::cout <<"l.GetFirst()		: " << l.GetFirst() << std::endl;
+		std::cout << "l.GetLast()		: " << l.GetLast() << std::endl;	
 	}
 	catch (Exception& e)
 	{
