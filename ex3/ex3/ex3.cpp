@@ -3,7 +3,9 @@
 #include <sstream>
 #include <list>
 #include <vector>
-//using namespace std;
+#include <algorithm>
+#include "Exception.h"
+
 template<typename T, typename R>
 class tContainer_t
 {
@@ -15,11 +17,44 @@ public:
 	bool IsEmpty();
 	T& GetFirst() const;
 	T& GetLast() const;
+	T& Find(T const& item) const;
+	T& operator [](unsigned i);
 	int Size();
-	void Insert(T* const element);
+	void Insert(T* const item);
+	
 	std::string Print();
-
 };
+
+template<typename T, typename R>
+T& tContainer_t<T, R>::operator[]( unsigned i )
+{
+	
+	if (i < Container.size())
+	{
+		// using iterator for both vector and list as optimal efficiency is guaranteed :
+		// http://stackoverflow.com/questions/10719145/operator-overloading-and-template-specialization
+		typename R::const_iterator it = Container.begin();
+		std::advance(it, i);
+		return (**it);
+	} 
+	else
+	{
+		throw Exception("Illegal index exception")
+	}
+}
+
+
+template<typename T, typename R>
+T& tContainer_t<T, R>::Find( T const& item ) const
+{
+	// using lambda expressions, found in most modern compilers
+	typename R::const_iterator it = std::find_if(Container.begin(), Container.end(),  [item](const T* v) { return *v == item; });
+	if (it != Container.end())
+		return (**it);
+	else
+		throw Exception("Item not found in container");
+	
+}
 
 template<typename T, typename R>
 std::string tContainer_t<T, R>::Print()
@@ -42,9 +77,9 @@ std::string tContainer_t<T, R>::Print()
 }
 
 template<typename T, typename R>
-void tContainer_t<T, R>::Insert(T* const element )
+void tContainer_t<T, R>::Insert(T* const item )
 {
-	Container.push_back(element);
+	Container.push_back(item);
 }
 
 template<typename T, typename R>
@@ -56,17 +91,31 @@ int tContainer_t<T, R>::Size()
 template<typename T, typename R>
 T& tContainer_t<T, R>::GetLast() const
 {
-	typename R::const_iterator it = Container.end();
-	//TODO add check here for empty
-	it--;
-	return (**it);
+	if (!Container.empty())
+	{
+		typename R::const_iterator it = Container.end();
+		it--;
+		return (**it);
+	}
+	else
+	{
+		throw Exception("Empty container exception");
+	}
+	
 }
 
 template<typename T, typename R>
 T& tContainer_t<T, R>::GetFirst() const
 {
-	typename R::const_iterator it = Container.begin();
-	return (**it);
+	if (!Container.empty())
+	{
+		typename R::const_iterator it = Container.begin();
+		return (**it);
+	}
+	else
+	{
+		throw Exception("Empty container exception");
+	}
 }
 
 template<typename T, typename R>
@@ -92,27 +141,51 @@ int main()
 {
 	// Vector example
 	std::cout <<"Vector example" << std::endl << "--------------" << std::endl;
+	try
+	{
+		tContainer_t<double, std::vector<double*> > v;
+		double f1 = 1.1;
+		double f2 = 2.2;
+		double f3 = 3.3;
+		v.Insert(&f1);
+		v.Insert(&f2);
+		v.Insert(&f3);
+		std::cout << "Found " << v.Find(1.1) << std::endl;
+		std::cout << v.Print();
+		std::cout << "container empty ? : " << v.IsEmpty()<< std::endl
+			<< "container size: " << v.Size() << std::endl
+			<<"first element: " << v.GetFirst() << std::endl
+			<< "last element: " << v.GetLast() << std::endl;	
+	}	
+	catch (Exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 				
-	tContainer_t<double, std::vector<double*> > v;
-	double f1 = 1.1;
-	double f2 = 2.2;
-	double f3 = 3.3;
-	v.Insert(&f1);
-	v.Insert(&f2);
-	v.Insert(&f3);
-	std::cout << v.Print();
-	std::cout << "container empty ? : " << v.IsEmpty()<< std::endl << "container size: " << v.Size() << std::endl <<"first element: " << v.GetFirst() << std::endl << "last element: " << v.GetLast() << std::endl;	
+	
 
 	// List example
 	std::cout << std::endl <<"List example" << std::endl << "------------" << std::endl;
-	tContainer_t<int, std::list<int*> > l;
-	int i1 = 1;
-	int i2 = 2;
-	int i3 = 3;
-	l.Insert(&i1);
-	l.Insert(&i2);
-	l.Insert(&i3);	
-	std::cout << l.Print();
-	std::cout << "container empty ? : " << l.IsEmpty()<< std::endl << "container size: " << l.Size() << std::endl <<"first element: " << l.GetFirst() << std::endl << "last element: " << l.GetLast() << std::endl;
+	try
+	{
+		tContainer_t<int, std::list<int*> > l;
+		int i1 = 1;
+		int i2 = 2;
+		int i3 = 3;
+		l.Insert(&i1);
+		l.Insert(&i2);
+		l.Insert(&i3);	
+		std::cout << l.Print();
+		std::cout << "container empty ? : " << l.IsEmpty()<< std::endl
+			<< "container size: " << l.Size() << std::endl
+			<<"first element: " << l.GetFirst() << std::endl
+			<< "last element: " << l.GetLast() << std::endl;
+	}
+	catch (Exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+
 	return 0;
 }
