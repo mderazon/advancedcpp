@@ -21,8 +21,29 @@ public:
 	T& operator [](unsigned i);
 	int Size();
 	void Insert(T* const item);	
+	void Erase(T item);
+	T* Remove(T item);
+	void Clear();
 	std::string Print();
 };
+
+template<typename T, typename R>
+T* tContainer_t<T, R>::Remove( T item )
+{
+	//TODO implement
+}
+
+template<typename T, typename R>
+void tContainer_t<T, R>::Erase( T item )
+{
+	//TODO implement
+}
+
+template<typename T, typename R>
+void tContainer_t<T, R>::Clear()
+{
+	//TODO implement
+}
 
 template<typename T, typename R>
 T& tContainer_t<T, R>::operator[]( unsigned i )
@@ -151,7 +172,7 @@ int main()
 		std::cout << "v.print()		: "<< v.Print();
 		std::cout << "v.Find(1.1)		: "<< "Found " << v.Find(1.1) << std::endl;
 		std::cout << "v[2]			: " << v[2] << std::endl;		
-		std::cout << "v.IsEmpty()		: " << v.IsEmpty()<< std::endl;
+		std::cout << "v.IsEmpty()		: " << v.IsEmpty() << std::endl;
 		std::cout << "v.Size()		: " << v.Size() << std::endl;
 		std::cout << "v.GetFirst()		: " << v.GetFirst() << std::endl;
 		std::cout << "v.GetLast()		: " << v.GetLast() << std::endl;	
