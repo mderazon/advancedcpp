@@ -39,7 +39,7 @@ T& tContainer_t<T, R>::operator[]( unsigned i )
 	} 
 	else
 	{
-		throw Exception("Illegal index exception")
+		throw Exception("Illegal index exception");
 	}
 }
 
@@ -151,6 +151,7 @@ int main()
 		v.Insert(&f2);
 		v.Insert(&f3);
 		std::cout << "Found " << v.Find(1.1) << std::endl;
+		std::cout << "v[2] = " << v[2] << std::endl;
 		std::cout << v.Print();
 		std::cout << "container empty ? : " << v.IsEmpty()<< std::endl
 			<< "container size: " << v.Size() << std::endl
