@@ -3,6 +3,7 @@
 #include <sstream>
 #include <list>
 #include <vector>
+#include <math.h>
 #include <algorithm>
 #include "Exception.h"
 
@@ -17,7 +18,7 @@ public:
 	bool IsEmpty();
 	T& GetFirst() ;
 	T& GetLast();
-	T& Find(T const& item);
+	T* Find(T const& item);
 	T& operator [](unsigned i);
 	int Size();
 	void Insert(T* const item);	
@@ -30,19 +31,33 @@ public:
 template<typename T, typename R>
 T* tContainer_t<T, R>::Remove( T item )
 {
-	//TODO implement
+	// using lambda expressions, found in most compilers
+	typename R::const_iterator it = std::find_if(Container.begin(), Container.end(),  [item](const T* v) { return std::abs(*v - item) < DBL_EPSILON; });
+	if (it != Container.end())
+	{
+		T* pItem = (*it);
+		Container.erase(it);
+		return pItem;
+	}
+	else
+		return NULL;
 }
 
 template<typename T, typename R>
 void tContainer_t<T, R>::Erase( T item )
 {
-	//TODO implement
+	T* pItem;
+	if ((pItem = Remove(item)) != NULL )
+	{
+		delete pItem;
+	}
+	
 }
 
 template<typename T, typename R>
 void tContainer_t<T, R>::Clear()
 {
-	//TODO implement
+	Container.clear();
 }
 
 template<typename T, typename R>
@@ -64,14 +79,14 @@ T& tContainer_t<T, R>::operator[]( unsigned i )
 }
 
 template<typename T, typename R>
-T& tContainer_t<T, R>::Find( T const& item ) 
+T* tContainer_t<T, R>::Find( T const& item ) 
 {
-	// using lambda expressions, found in most modern compilers
+	// using lambda expressions, found in most compilers
 	typename R::const_iterator it = std::find_if(Container.begin(), Container.end(),  [item](const T* v) { return *v == item; });
 	if (it != Container.end())
-		return (**it);
+		return (*it);
 	else
-		throw Exception("Item not found in container");
+		return NULL;
 	
 }
 
@@ -91,7 +106,7 @@ std::string tContainer_t<T, R>::Print()
 		}
 		i++;
 	}
-	s << " ]" << std::endl;
+	s << " ]";
 	return s.str();
 }
 
@@ -163,19 +178,23 @@ int main()
 	try
 	{
 		tContainer_t<double, std::vector<double*> > v;
-		double f1 = 1.1;
-		double f2 = 2.2;
-		double f3 = 3.3;
-		v.Insert(&f1);
-		v.Insert(&f2);
-		v.Insert(&f3);
-		std::cout << "v.print()		: "<< v.Print();
-		std::cout << "v.Find(1.1)		: "<< "Found " << v.Find(1.1) << std::endl;
+		double* f1 = new double; *f1 = 1.1;
+		double* f2 = new double; *f2 = 2.2;
+		double* f3 = new double; *f3 = 3.3;
+		v.Insert(f1);
+		v.Insert(f2);
+		v.Insert(f3);
+		std::cout << "v.Print()		: " << v.Print() << std::endl;
+		std::cout << "v.Find(1.1)		: "<< "Found " << *v.Find(1.1) << std::endl;
 		std::cout << "v[2]			: " << v[2] << std::endl;		
 		std::cout << "v.IsEmpty()		: " << v.IsEmpty() << std::endl;
 		std::cout << "v.Size()		: " << v.Size() << std::endl;
 		std::cout << "v.GetFirst()		: " << v.GetFirst() << std::endl;
-		std::cout << "v.GetLast()		: " << v.GetLast() << std::endl;	
+		std::cout << "v.GetLast()		: " << v.GetLast() << std::endl;
+		std::cout << "v.Remove(3.3)		: " << "Removed " << *v.Remove(3.3) << std::endl;
+		std::cout << "v.Print()		: " << v.Print() << std::endl;
+		std::cout << "l.Clear()		: Clearing..." << std::endl; v.Clear();
+		std::cout << "v.Print()		: " << v.Print() << std::endl;
 	}	
 	catch (Exception& e)
 	{
@@ -189,19 +208,25 @@ int main()
 	try
 	{
 		tContainer_t<int, std::list<int*> > l;
-		int i1 = 1;
-		int i2 = 2;
-		int i3 = 3;
-		l.Insert(&i1);
-		l.Insert(&i2);
-		l.Insert(&i3);	
-		std::cout << "l.print()		: " << l.Print();
-		std::cout << "l.Find(2)		: " << "Found " << l.Find(2) << std::endl;
+		int* i1 = new int; *i1 = 1;
+		int* i2 = new int; *i2 = 2;
+		int* i3 = new int; *i3 = 3;
+		l.Insert(i1);
+		l.Insert(i2);
+		l.Insert(i3);	
+		std::cout << "l.Print()		: " << l.Print() << std::endl;
+		std::cout << "l.Find(2)		: " << "Found " << *l.Find(2) << std::endl;
 		std::cout << "l[0]			: " << l[0] << std::endl;		
 		std::cout << "l.IsEmpty()		: " << l.IsEmpty()<< std::endl;
 		std::cout << "l.Size()		: " << l.Size() << std::endl;
 		std::cout <<"l.GetFirst()		: " << l.GetFirst() << std::endl;
-		std::cout << "l.GetLast()		: " << l.GetLast() << std::endl;	
+		std::cout << "l.GetLast()		: " << l.GetLast() << std::endl;
+		std::cout << "l.Remove(2)		: " << "Removed " << *l.Remove(2) << std::endl;
+		std::cout << "l.Print()		: " << l.Print() << std::endl;
+		std::cout << "l.Erase(3)		: Erasing..." << std::endl; l.Erase(3);
+		std::cout << "l.Print()		: " << l.Print() << std::endl;
+		std::cout << "l.Clear()		: Clearing..." << std::endl; l.Clear();
+		std::cout << "l.Print()		: " << l.Print() << std::endl;
 	}
 	catch (Exception& e)
 	{
