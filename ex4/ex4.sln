@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 11
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ex4", "ex4\ex4.vcxproj", "{64D9CE12-F8BC-BAC4-BAAB-2A18EE9A8F2B}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+		Svn-Managed = True
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{64D9CE12-F8BC-BAC4-BAAB-2A18EE9A8F2B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{64D9CE12-F8BC-BAC4-BAAB-2A18EE9A8F2B}.Debug|Win32.Build.0 = Debug|Win32
+		{64D9CE12-F8BC-BAC4-BAAB-2A18EE9A8F2B}.Release|Win32.ActiveCfg = Release|Win32
+		{64D9CE12-F8BC-BAC4-BAAB-2A18EE9A8F2B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
