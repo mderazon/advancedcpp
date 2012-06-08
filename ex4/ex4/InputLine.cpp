@@ -12,7 +12,10 @@ InputLine::InputLine(std::string line) : line_(line)
 }
 
 
-InputLine::~InputLine(void) {}
+InputLine::~InputLine(void)
+{
+	this->tokens_.clear();
+}
 
 InputLine::const_iterator InputLine::begin() const
 {
