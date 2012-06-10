@@ -26,5 +26,11 @@ void Parser::Parse()
 
 void Parser::Analyze()
 {
+	for ( std::vector<InputLine*>::iterator it = this->lines_.begin(); 
+		it != this->lines_.end(); ++it )
+	{
+		this->analyzer_.AnalyzeLine(**it);
+	}
 
+	
 }

@@ -16,6 +16,7 @@
 #include <set>
 #include <fstream>
 #include <iterator>
+#include <stack>
 
 
 

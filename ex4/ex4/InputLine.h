@@ -1,4 +1,7 @@
 #pragma once
+#ifndef INPUT_LINE
+#define INPUT_LINE
+
 class InputLine
 {
 private:
@@ -15,3 +18,4 @@ public:
 	
 };
 
+#endif

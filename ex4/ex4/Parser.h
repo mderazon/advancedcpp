@@ -1,4 +1,7 @@
 #pragma once
+#ifndef PARSER
+#define PARSER
+
 #include "Analyzer.h"
 #include "InputLine.h"
 class Parser
@@ -18,3 +21,4 @@ public:
 	
 };
 
+#endif
