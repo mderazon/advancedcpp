@@ -13,6 +13,7 @@ public:
 	~Parser(void);
 
 	void Parse();
+	void Analyze();
 
 	
 };

@@ -1,11 +1,16 @@
-// ex4.cpp : Defines the entry point for the console application.
-//
-
 #include "stdafx.h"
+#include "Parser.h"
+#include "Analyzer.h"
 
-
-int _tmain(int argc, _TCHAR* argv[])
+using namespace std;
+int main()
 {
+	ifstream ifs("program.txt" , ifstream::in);
+	
+	Analyzer basicAnalyzer;
+	Parser parser(ifs, basicAnalyzer);
+	
+	ifs.close();
 	return 0;
 }
 

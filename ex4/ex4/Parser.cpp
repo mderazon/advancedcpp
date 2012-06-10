@@ -23,3 +23,8 @@ void Parser::Parse()
 	}
 
 }
+
+void Parser::Analyze()
+{
+
+}

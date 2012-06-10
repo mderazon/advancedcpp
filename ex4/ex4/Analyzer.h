@@ -2,7 +2,7 @@
 class Analyzer
 {
 public:
-	Analyzer(void);
-	~Analyzer(void);
+	Analyzer();
+	~Analyzer();
 };
 
