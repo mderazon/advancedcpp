@@ -12,6 +12,7 @@ int main()
 	Parser parser(ifs, basicAnalyzer);
 	
 	ifs.close();
+	ofs.close();
 	return 0;
 }
 

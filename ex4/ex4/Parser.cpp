@@ -6,7 +6,8 @@ Parser::Parser(std::istream &inputStream, Analyzer& analyzer ) : inputStream_(in
 Parser::~Parser(void)
 {
 	for ( std::vector<InputLine*>::iterator it = this->lines_.begin(); 
-		it != this->lines_.end(); ++it ) {
+		it != this->lines_.end(); ++it )
+	{
 			delete * it;
 	}
 	this->lines_.clear();
@@ -26,11 +27,5 @@ void Parser::Parse()
 
 void Parser::Analyze()
 {
-	for ( std::vector<InputLine*>::iterator it = this->lines_.begin(); 
-		it != this->lines_.end(); ++it )
-	{
-		this->analyzer_.AnalyzeLine(**it);
-	}
-
-	
+	analyzer_.Analyze(lines_);	
 }

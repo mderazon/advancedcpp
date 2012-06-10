@@ -1,39 +1,34 @@
 #include "stdafx.h"
 #include "Analyzer.h"
 
-char const* types_[] = { "char", "short", "int", "long", "float", "double", "void"};
-char const* control_[] = { "if", "else", "for" , "while", "function"};
-char const* operators_[] = {"++",  "--",  "==",  "->" ,  "=",  "+",  "-",  "*",  "&",  "<<",  ">>"};
-char const* modifiers_[] = {"class", "private", "public", "const", "virtual"};
-char const* parentheses_[] = { "(", ")", "{", "}", "<", ">", "[", "]" };
+char const* TYPES_[] = { "char", "short", "int", "long", "float", "double", "void"};
+char const* CONTROL_[] = { "if", "else", "for" , "while", "function"};
+char const* OPERATORS_[] = {"++",  "--",  "==",  "->" ,  "=",  "+",  "-",  "*",  "&",  "<<",  ">>"};
+char const* MODIFIERS_[] = {"class", "private", "public", "const", "virtual"};
+char const* PARENTHESES_[] = { "(", ")", "{", "}", "<", ">", "[", "]" };
 
-std::set<std::string> reservedWords;
-std::set<std::string> types(std::begin(types_),std::end(types_));
-std::set<std::string> control(std::begin(control_),std::end(control_));
-std::set<std::string> operators(std::begin(operators_),std::end(operators_));
-std::set<std::string> modifiers(std::begin(modifiers_),std::end(modifiers_));
-std::set<std::string> parentheses(std::begin(parentheses_),std::end(parentheses_));
+std::set<std::string> RESERVD_WORDS;
+std::set<std::string> TYPES(std::begin(TYPES_),std::end(TYPES_));
+std::set<std::string> CONTROL(std::begin(CONTROL_),std::end(CONTROL_));
+std::set<std::string> OPERATORS(std::begin(OPERATORS_),std::end(OPERATORS_));
+std::set<std::string> MODIFIERS(std::begin(MODIFIERS_),std::end(MODIFIERS_));
+std::set<std::string> PARENTHESES(std::begin(PARENTHESES_),std::end(PARENTHESES_));
 
 
 
 
 Analyzer::Analyzer(std::ostream &outputStream) : outputStream_(outputStream)
 {
-	reservedWords.insert(std::begin(types_),std::end(types_));
-	reservedWords.insert(std::begin(control_),std::end(control_));
-	reservedWords.insert(std::begin(operators_),std::end(operators_));
-	reservedWords.insert(std::begin(modifiers_),std::end(modifiers_));
-	reservedWords.insert(std::begin(parentheses_),std::end(parentheses_));
+	RESERVD_WORDS.insert(std::begin(TYPES_),std::end(TYPES_));
+	RESERVD_WORDS.insert(std::begin(CONTROL_),std::end(CONTROL_));
+	RESERVD_WORDS.insert(std::begin(OPERATORS_),std::end(OPERATORS_));
+	RESERVD_WORDS.insert(std::begin(MODIFIERS_),std::end(MODIFIERS_));
+	RESERVD_WORDS.insert(std::begin(PARENTHESES_),std::end(PARENTHESES_));
 }
 
 
 Analyzer::~Analyzer()
 {
-}
-
-void Analyzer::AnalyzeLine( InputLine& il )
-{
-
 }
 
 bool Analyzer::IsMatchingPair( std::string p1, std::string p2 )
@@ -75,3 +70,33 @@ bool Analyzer::ParenthesesCheck( std::string p )
 }
 
 
+bool Analyzer::InSet( std::string str, std::set<std::string>& set )
+{
+	const bool is_in = set.find(str) != set.end();
+	return is_in;
+}
+
+
+void Analyzer::Analyze( std::vector<InputLine*> &lines )
+{
+	std::vector<InputLine*>::iterator it = lines.begin();
+	InputLine::const_iterator line_it = (*it)->begin();
+	if (*line_it != "main()")
+	{
+		outputStream_ << "Error: program has to start with main()";
+	}
+	// main loop
+	for ( it; it != lines.end(); it++ )
+	{
+		line_it = (*it)->begin();
+		for ( line_it = (*it)->begin(); line_it != (*it)->end(); line_it++ )
+		{
+			if (InSet(*line_it, TYPES))
+			{
+			} 
+			else
+			{
+			}
+		}
+	}
+}
