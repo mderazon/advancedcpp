@@ -6,8 +6,9 @@ using namespace std;
 int main()
 {
 	ifstream ifs("program.txt" , ifstream::in);
+	ofstream ofs("output.txt" , ifstream::out);
 	
-	Analyzer basicAnalyzer;
+	Analyzer basicAnalyzer(ofs);
 	Parser parser(ifs, basicAnalyzer);
 	
 	ifs.close();

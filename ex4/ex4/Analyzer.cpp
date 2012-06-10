@@ -17,7 +17,7 @@ std::set<std::string> parentheses(std::begin(parentheses_),std::end(parentheses_
 
 
 
-Analyzer::Analyzer()
+Analyzer::Analyzer(std::ostream &outputStream) : outputStream_(outputStream)
 {
 	reservedWords.insert(std::begin(types_),std::end(types_));
 	reservedWords.insert(std::begin(control_),std::end(control_));
