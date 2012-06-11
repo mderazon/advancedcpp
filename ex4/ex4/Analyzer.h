@@ -6,12 +6,23 @@
 class Analyzer
 {
 private:
-	std::ostream& outputStream_;
-	std::stack<std::string> pstack;
+	std::ostream& outputStream_;		// output stream of the analyzer
+	std::stack<std::string> pstack;		// parentheses stack	
+	struct pair							// struct to store type and variable
+	{
+		std::string type;
+		std::string variable;
+	};
+	std::vector<pair> variables;		// vector to store all variables
 
-	bool InSet(std::string str, std::set<std::string>& set);
-	bool IsMatchingPair(std::string p1, std::string p2);
-	bool ParenthesesCheck(std::string p);
+
+	bool InSet(std::string str, std::set<std::string>& set);	// check if a string is in a set
+	bool IsMatchingPair(std::string p1, std::string p2);		// check if open and close parentheses match
+	bool ParenthesesCheck(std::string p);						// check if so far legal parentheses
+	bool Contains(pair v, std::vector<pair> variables);			// check if variables already contains some variable
+	void PrintVariables();
+
+
 public:
 	Analyzer(std::ostream &outputStream);
 	~Analyzer();

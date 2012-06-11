@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Analyzer.h"
 
-char const* TYPES_[] = { "char", "short", "int", "long", "float", "double", "void"};
-char const* CONTROL_[] = { "if", "else", "for" , "while", "function"};
+char const* TYPES_[] = { "char", "short", "int", "long", "float", "double", "void", "function"};
+char const* CONTROL_[] = { "if", "else", "for" , "while"};
 char const* OPERATORS_[] = {"++",  "--",  "==",  "->" ,  "=",  "+",  "-",  "*",  "&",  "<<",  ">>"};
 char const* MODIFIERS_[] = {"class", "private", "public", "const", "virtual"};
 char const* PARENTHESES_[] = { "(", ")", "{", "}", "<", ">", "[", "]" };
@@ -15,7 +15,6 @@ std::set<std::string> MODIFIERS(std::begin(MODIFIERS_),std::end(MODIFIERS_));
 std::set<std::string> PARENTHESES(std::begin(PARENTHESES_),std::end(PARENTHESES_));
 
 
-std::ostringstream summary_output;
 
 Analyzer::Analyzer(std::ostream &outputStream) : outputStream_(outputStream)
 {
@@ -77,6 +76,32 @@ bool Analyzer::InSet( std::string str, std::set<std::string>& set )
 }
 
 
+bool Analyzer::Contains( pair v, std::vector<pair> variables )
+{
+	std::vector<pair>::const_iterator it = variables.begin();
+	for (it; it != variables.end(); it++)
+	{
+		if (v.variable == it->variable)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
+void Analyzer::PrintVariables()
+{
+	outputStream_ << "Variables summary:" << std::endl;
+	std::vector<pair>::const_iterator it = variables.begin();
+	for (it; it != variables.end(); it++)
+	{
+		outputStream_ << it->type << "	" << it->variable << std::endl;
+	}	
+}
+
+
+
 void Analyzer::Analyze( std::vector<InputLine*> &lines )
 {
 	std::vector<InputLine*>::iterator it = lines.begin();
@@ -90,7 +115,7 @@ void Analyzer::Analyze( std::vector<InputLine*> &lines )
 	{
 		int line_number = std::distance(lines.begin(), it);
 		line_it = (*it)->begin();
-		// iterate the line
+		// iterate a line
 		while (line_it != (*it)->end())
 		{
 			if (InSet(*line_it, TYPES))
@@ -99,15 +124,26 @@ void Analyzer::Analyze( std::vector<InputLine*> &lines )
 				line_it++;
 				if (InSet(*line_it,RESERVD_WORDS))
 				{
-					outputStream_ << "Line " << line_number << ": Error - Only variable can come after type specifier" << std::endl;
+					outputStream_ << "Line " << line_number << ": Error - Only variables can follow predefined types" << std::endl;
 					break;
 				}
-				summary_output << type << "	" << *line_it << std::endl;
-
+				pair v = {type, *line_it};
+				if (Contains(v, variables))
+				{
+					outputStream_ << "Line " << line_number << ": Error - Variable " << v.variable << "already declared" << std::endl;
+					break;
+				}
+				variables.push_back(v);
 			} 
-			else
+			else if(InSet(*line_it, PARENTHESES))
 			{
+				if (!ParenthesesCheck(*line_it))
+				{
+					outputStream_ << "Line " << line_number << ": Error - '}' without '{'" << std::endl;
+				}
 			}
+			line_it++;
 		}
 	}
+	PrintVariables();
 }
