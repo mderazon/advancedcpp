@@ -116,12 +116,17 @@ void Analyzer::Analyze( std::vector<InputLine*> &lines )
 		int line_number = std::distance(lines.begin(), it);
 		line_it = (*it)->begin();
 		// iterate a line
+		bool prev_if = false;
 		while (line_it != (*it)->end())
-		{
+		{			
 			if (InSet(*line_it, TYPES))
 			{
 				std::string type = *line_it;
 				line_it++;
+				if (InSet(*line_it, TYPES))
+				{
+					outputStream_ << "Line " << line_number << ": Error - " << *line_it << " after " << type << std::endl;
+				}
 				if (InSet(*line_it,RESERVD_WORDS))
 				{
 					outputStream_ << "Line " << line_number << ": Error - Only variables can follow predefined types" << std::endl;
@@ -140,6 +145,17 @@ void Analyzer::Analyze( std::vector<InputLine*> &lines )
 				if (!ParenthesesCheck(*line_it))
 				{
 					outputStream_ << "Line " << line_number << ": Error - '}' without '{'" << std::endl;
+				}
+			}
+			else if (*line_it == "if")
+			{
+				prev_if = true;
+			}
+			else if (*line_it == "else")
+			{
+				if (!prev_if)
+				{
+					outputStream_ << "Line " << line_number << ": Error - 'else' without 'if'" << std::endl;
 				}
 			}
 			line_it++;
