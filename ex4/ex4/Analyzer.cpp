@@ -15,7 +15,7 @@ std::set<std::string> MODIFIERS(std::begin(MODIFIERS_),std::end(MODIFIERS_));
 std::set<std::string> PARENTHESES(std::begin(PARENTHESES_),std::end(PARENTHESES_));
 
 
-
+std::ostringstream summary_output;
 
 Analyzer::Analyzer(std::ostream &outputStream) : outputStream_(outputStream)
 {
@@ -83,16 +83,27 @@ void Analyzer::Analyze( std::vector<InputLine*> &lines )
 	InputLine::const_iterator line_it = (*it)->begin();
 	if (*line_it != "main()")
 	{
-		outputStream_ << "Error: program has to start with main()";
+		outputStream_ << "Error: program has to start with main()" << std::endl;
 	}
-	// main loop
+	// main loop - iterate the whole stream, line by line
 	for ( it; it != lines.end(); it++ )
 	{
+		int line_number = std::distance(lines.begin(), it);
 		line_it = (*it)->begin();
-		for ( line_it = (*it)->begin(); line_it != (*it)->end(); line_it++ )
+		// iterate the line
+		while (line_it != (*it)->end())
 		{
 			if (InSet(*line_it, TYPES))
 			{
+				std::string type = *line_it;
+				line_it++;
+				if (InSet(*line_it,RESERVD_WORDS))
+				{
+					outputStream_ << "Line " << line_number << ": Error - Only variable can come after type specifier" << std::endl;
+					break;
+				}
+				summary_output << type << "	" << *line_it << std::endl;
+
 			} 
 			else
 			{
