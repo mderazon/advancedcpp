@@ -1,3 +1,3 @@
-﻿main ( )
+main ( ) this is fine
 int i = 3
-float float
+the following is an error float float

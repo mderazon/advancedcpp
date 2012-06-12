@@ -92,11 +92,11 @@ bool Analyzer::Contains( pair v, std::vector<pair> variables )
 
 void Analyzer::PrintVariables()
 {
-	outputStream_ << "Variables summary:" << std::endl;
+	this->outputStream_ << "Variables summary:" << std::endl;
 	std::vector<pair>::const_iterator it = variables.begin();
 	for (it; it != variables.end(); it++)
 	{
-		outputStream_ << it->type << "	" << it->variable << std::endl;
+		this->outputStream_ << it->type << "	" << it->variable << std::endl;
 	}	
 }
 
@@ -106,15 +106,18 @@ void Analyzer::Analyze( std::vector<InputLine*> &lines )
 {
 	std::vector<InputLine*>::iterator it = lines.begin();
 	InputLine::const_iterator line_it = (*it)->begin();
-	if (*line_it != "main()")
+	int line_number = 1;
+	// check for main()
+	if ((*line_it) != "main" || *(line_it+1) != "(" || *(line_it+2) != ")")
 	{
-		outputStream_ << "Error: program has to start with main()" << std::endl;
+		this->outputStream_ << "Line " << line_number << ": Error - " << "Program has to start with main()" << std::endl;
 	}
+	it++;
 	// main loop - iterate the whole stream, line by line
 	for ( it; it != lines.end(); it++ )
-	{
-		int line_number = std::distance(lines.begin(), it);
+	{		
 		line_it = (*it)->begin();
+		line_number++;
 		// iterate a line
 		bool prev_if = false;
 		while (line_it != (*it)->end())
@@ -125,17 +128,18 @@ void Analyzer::Analyze( std::vector<InputLine*> &lines )
 				line_it++;
 				if (InSet(*line_it, TYPES))
 				{
-					outputStream_ << "Line " << line_number << ": Error - " << *line_it << " after " << type << std::endl;
+					this->outputStream_ << "Line " << line_number << ": Error - " << *line_it << " after " << type << std::endl;
+					break;
 				}
 				if (InSet(*line_it,RESERVD_WORDS))
 				{
-					outputStream_ << "Line " << line_number << ": Error - Only variables can follow predefined types" << std::endl;
+					this->outputStream_ << "Line " << line_number << ": Error - Only variables can follow predefined types" << std::endl;
 					break;
 				}
 				pair v = {type, *line_it};
 				if (Contains(v, variables))
 				{
-					outputStream_ << "Line " << line_number << ": Error - Variable " << v.variable << "already declared" << std::endl;
+					this->outputStream_ << "Line " << line_number << ": Error - Variable " << v.variable << "already declared" << std::endl;
 					break;
 				}
 				variables.push_back(v);
@@ -144,7 +148,7 @@ void Analyzer::Analyze( std::vector<InputLine*> &lines )
 			{
 				if (!ParenthesesCheck(*line_it))
 				{
-					outputStream_ << "Line " << line_number << ": Error - '}' without '{'" << std::endl;
+					this->outputStream_ << "Line " << line_number << ": Error - '}' without '{'" << std::endl;
 				}
 			}
 			else if (*line_it == "if")

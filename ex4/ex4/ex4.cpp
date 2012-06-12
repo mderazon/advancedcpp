@@ -8,7 +8,7 @@ int main()
 	ifstream ifs("program.txt" , ifstream::in);
 	ofstream ofs("output.txt" , ofstream::out);
 	
-	Analyzer basicAnalyzer(ofs);
+	Analyzer basicAnalyzer(cout);
 	Parser parser(ifs, basicAnalyzer);
 
 	parser.Parse();
