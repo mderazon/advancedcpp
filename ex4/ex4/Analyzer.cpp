@@ -42,7 +42,6 @@ bool Analyzer::IsMatchingPair( std::string p1, std::string p2 )
 		return false;
 }
 
-
 bool Analyzer::ParenthesesCheck( std::string p )
 {
 	if (p == "{" || p == "(" || p == "[" || p == "<")
@@ -68,13 +67,19 @@ bool Analyzer::ParenthesesCheck( std::string p )
 	}
 }
 
+std::string Analyzer::Match( std::string p)
+{
+	if (p == "}") return "{";
+	else if (p == ">") return "<";
+	else if (p == ")") return "(";
+	else if (p == "]") return "[";	
+}
 
 bool Analyzer::InSet( std::string str, std::set<std::string>& set )
 {
 	const bool is_in = set.find(str) != set.end();
 	return is_in;
 }
-
 
 bool Analyzer::Contains( pair v, std::vector<pair> variables )
 {
@@ -89,9 +94,9 @@ bool Analyzer::Contains( pair v, std::vector<pair> variables )
 	return false;
 }
 
-
 void Analyzer::PrintVariables()
 {
+	this->outputStream_ << std::endl;
 	this->outputStream_ << "Variables summary:" << std::endl;
 	std::vector<pair>::const_iterator it = variables.begin();
 	for (it; it != variables.end(); it++)
@@ -148,7 +153,8 @@ void Analyzer::Analyze( std::vector<InputLine*> &lines )
 			{
 				if (!ParenthesesCheck(*line_it))
 				{
-					this->outputStream_ << "Line " << line_number << ": Error - '}' without '{'" << std::endl;
+					this->outputStream_ << "Line " << line_number << ": Error - '" << *line_it << "' without '" << Match(*line_it) << "'" << std::endl;
+					break;
 				}
 			}
 			else if (*line_it == "if")

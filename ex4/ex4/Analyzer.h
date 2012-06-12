@@ -19,6 +19,7 @@ private:
 	bool InSet(std::string str, std::set<std::string>& set);	// check if a string is in a set
 	bool IsMatchingPair(std::string p1, std::string p2);		// check if open and close parentheses match
 	bool ParenthesesCheck(std::string p);						// check if so far legal parentheses
+	std::string Match(std::string p);								// return string that matches the parentheses
 	bool Contains(pair v, std::vector<pair> variables);			// check if variables already contains some variable
 	void PrintVariables();
 

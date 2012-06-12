@@ -51,4 +51,7 @@
   <ItemGroup>
     <Page Include="program.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="README.txt" />
+  </ItemGroup>
 </Project>

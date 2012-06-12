@@ -1,3 +1,10 @@
-main ( ) this is fine
+main ( ) {
 int i = 3
-the following is an error float float
+float f = 1.1
+function foo
+) ) ()
+
+else a = b
+float float j = 1
+int float aa
+}
