@@ -1,8 +1,12 @@
 #include "stdafx.h"
 #include "FishImpl.h"
 
-FishImpl::FishImpl(std::string type) : type_(type) { }
-FishImpl::~FishImpl(void) { }
+FishImpl::FishImpl(std::string type) : type_(type)
+{
+}
+FishImpl::~FishImpl(void)
+{
+}
 
 std::string FishImpl::getState() const
 {
@@ -14,6 +18,7 @@ std::string FishImpl::getType() const
 {
 	return type_;
 }
+
 
 GoldFishImpl::GoldFishImpl() : FishImpl("Gold Fish")
 {

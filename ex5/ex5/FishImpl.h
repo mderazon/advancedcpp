@@ -1,6 +1,7 @@
 #pragma once
 #ifndef FISHIMPL
 #define FISHIMPL
+
 class FishImpl
 {
 public:
@@ -10,6 +11,8 @@ public:
 	std::string getType() const;
 	virtual std::string feed() = 0;
 	std::string getState() const;
+	
+
 
 protected:
 	std::string type_;

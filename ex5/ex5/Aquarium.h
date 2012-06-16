@@ -1,8 +1,9 @@
 #pragma once
 #ifndef AQUARIUM
 #define AQUARIUM
+#include "Subject.h"
 
-class Aquarium
+class Aquarium : public Subject
 {
 public:
 	static Aquarium& getInstance();
