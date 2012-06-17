@@ -2,10 +2,13 @@
 //
 
 #include "stdafx.h"
-
+#include "Aquarium.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	return 0;
+	Aquarium* aqua = &Aquarium::getInstance();
+	aqua->add("Gold");
+	aqua->add("Piranha");
+	aqua->add("Salmon");
 }
 

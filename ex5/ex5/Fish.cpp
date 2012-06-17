@@ -31,6 +31,8 @@ std::string Fish::getType()
 	return m_Fish->getType();
 }
 
-void Fish::Update( Subject* ChngSubject )
+void Fish::Update( Subject* ChngSubject)
 {
+	if (ChngSubject == Observer::sbj)
+		feed();
 }
