@@ -8,9 +8,11 @@ public:
 	FishImpl(std::string type);
 	~FishImpl(void);
 
-	std::string getType() const;
-	virtual std::string feed() = 0;
-	std::string getState() const;
+	virtual std::string getType() const;
+	virtual void feed() = 0;
+	virtual std::string getState() const;
+	virtual void pause();
+	virtual void play();
 	
 
 
@@ -20,27 +22,28 @@ protected:
 	int transparency_;
 	int size_;
 	std::string direction_;
+	bool paused_;
 };
 
 class GoldFishImpl : public FishImpl
 {
 public:
 	GoldFishImpl();
-	virtual std::string feed();
+	virtual void feed();
 };
 
 class PiranhaFishImpl : public FishImpl
 {
 public:
 	PiranhaFishImpl();
-	virtual std::string feed();
+	virtual void feed();
 };
 
 class SalmonFishImpl : public FishImpl
 {
 public:
 	SalmonFishImpl();
-	virtual std::string feed();
+	virtual void feed();
 };
 
 #endif

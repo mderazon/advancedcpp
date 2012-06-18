@@ -22,9 +22,9 @@ void Subject::Detach (Observer* ob)
 	m_observers.erase(m_observers.begin() + i);
 }
 
-void Subject::Notify ()
+void Subject::Notify (std::string message)
 {
 	for (int i = 0; i < m_observers.size(); i++)
-		(m_observers[i])->Update(this);
+		(m_observers[i])->Update(this, message);
 
 }

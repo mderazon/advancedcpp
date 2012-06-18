@@ -16,9 +16,19 @@ Fish::~Fish(void)
 	m_Fish = 0;
 }
 
-std::string Fish::feed()
+void Fish::feed()
 {
 	return m_Fish->feed();
+}
+
+void Fish::play()
+{
+	return m_Fish->play();
+}
+
+void Fish::pause()
+{
+	return m_Fish->pause();
 }
 
 std::string Fish::getState()
@@ -31,8 +41,16 @@ std::string Fish::getType()
 	return m_Fish->getType();
 }
 
-void Fish::Update( Subject* ChngSubject)
+void Fish::Update( Subject* ChngSubject, std::string message)
 {
 	if (ChngSubject == Observer::sbj)
-		feed();
+	{
+		if(message == "feed")
+			feed();
+		else if(message == "play")
+			play();
+		else if(message == "pause")
+			pause();
+	}
+
 }

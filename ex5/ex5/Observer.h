@@ -8,7 +8,7 @@ class Observer
 {
 public:
 	virtual	~Observer();
-	virtual void Update(Subject* ChngSubject) = 0;
+	virtual void Update(Subject* ChngSubject, std::string) = 0;
 protected:
 	Observer();
 	Subject* sbj;

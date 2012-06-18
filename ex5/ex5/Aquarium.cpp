@@ -11,7 +11,7 @@ Aquarium& Aquarium::getInstance()
 
 void Aquarium::feed()
 {
-	Notify(); // notify the fishes they have food
+	Notify("feed"); // notify the fishes they have food
 }
 
 void Aquarium::empty()
@@ -21,10 +21,12 @@ void Aquarium::empty()
 
 void Aquarium::pause()
 {
+	Notify("pause");
 }
 
 void Aquarium::play()
 {
+	Notify("play");
 }
 
 void Aquarium::add(std::string type)
@@ -35,12 +37,15 @@ void Aquarium::add(std::string type)
 void Aquarium::remove(std::string type)
 {
 	// this removes all fishes of type "type"
-	std::vector<Fish*>::iterator it = std::remove_if(fishim.begin(), fishim.end(),  [type](Fish* f) { return f->getType() == type; });
+	std::vector<Fish*>::iterator new_location = std::remove_if(fishim.begin(), fishim.end(),  [type](Fish* f) { return f->getType() == type; });
+	fishim.erase(new_location, fishim.end());
 }
 
 std::string Aquarium::debug()
 {
-	return NULL;
+	std::ostringstream s;
+	std::for_each(fishim.begin(), fishim.end(),  [&](Fish* f) {  s << f->getState(); });
+	return s.str();
 }
 
 Aquarium::Aquarium()

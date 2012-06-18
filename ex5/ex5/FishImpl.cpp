@@ -8,10 +8,30 @@ FishImpl::~FishImpl(void)
 {
 }
 
+void FishImpl::pause()
+{
+	paused_ = true;
+}
+
+void FishImpl::play()
+{
+	paused_ = false;
+}
+
 std::string FishImpl::getState() const
 {
-	// TODO complete
-	return NULL;
+	std::ostringstream s;
+	if(paused_)
+	{
+		s << type_ << "is not swimming." << std::endl;
+	}
+	else
+	{
+		s << type_ << " is swimming " << direction_ << " at speed " << speed_ << ". Size: " <<
+			size_ << " Transparency: " << transparency_ << "." << std::endl;
+	}
+	
+	return s.str();
 }
 
 std::string FishImpl::getType() const
@@ -26,6 +46,7 @@ GoldFishImpl::GoldFishImpl() : FishImpl("Gold Fish")
 	FishImpl::size_ = 1;
 	FishImpl::speed_ = 1;
 	FishImpl::transparency_ = 4;
+	FishImpl::paused_ = false;
 }
 PiranhaFishImpl::PiranhaFishImpl() : FishImpl("Piranha Fish")
 {
@@ -33,6 +54,7 @@ PiranhaFishImpl::PiranhaFishImpl() : FishImpl("Piranha Fish")
 	FishImpl::size_ = 3;
 	FishImpl::speed_ = 8;
 	FishImpl::transparency_ = 1;
+	FishImpl::paused_ = false;
 }
 SalmonFishImpl::SalmonFishImpl() : FishImpl("Salmon Fish")
 {
@@ -40,18 +62,16 @@ SalmonFishImpl::SalmonFishImpl() : FishImpl("Salmon Fish")
 	FishImpl::size_ = 6;
 	FishImpl::speed_ = 5;
 	FishImpl::transparency_ = 2;
+	FishImpl::paused_ = false;
 }
 
-std::string GoldFishImpl::feed()
+void GoldFishImpl::feed()
 {
 	FishImpl::transparency_++;
-	return "Gold fish has become more transparent";
 }
-std::string PiranhaFishImpl::feed() { 
+void PiranhaFishImpl::feed() { 
 	FishImpl::size_++;
-	return "Piranha fish has become bigger";
 }
-std::string SalmonFishImpl::feed() {
+void SalmonFishImpl::feed() {
 	FishImpl::speed_++;
-	return "Salmon fish has become faster";
 }

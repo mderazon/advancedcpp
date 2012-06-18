@@ -11,10 +11,12 @@ public:
 	Fish(std::string type, Subject* s);
 	~Fish(void);
 
-	std::string feed();
+	void feed();
+	void play();
+	void pause();
 	std::string getState();
 	std::string getType();
-	void Update (Subject* ChngSubject);
+	void Update (Subject* ChngSubject, std::string message);
 
 protected:
 	FishImpl* m_Fish; // ptr to implementation
