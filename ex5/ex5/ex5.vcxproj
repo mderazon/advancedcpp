@@ -76,9 +76,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Aquarium.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="FishFactory.h" />
