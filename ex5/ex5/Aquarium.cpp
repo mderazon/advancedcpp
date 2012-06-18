@@ -29,13 +29,13 @@ void Aquarium::play()
 
 void Aquarium::add(std::string type)
 {
-	fishim.push_back(Fish(type, this));
+	fishim.push_back(new Fish(type, this));
 }
 
 void Aquarium::remove(std::string type)
 {
 	// this removes all fishes of type "type"
-	std::vector<Fish>::iterator it = std::remove_if(fishim.begin(), fishim.end(),  [type](Fish f) { return f.getType() == type; });
+	std::vector<Fish*>::iterator it = std::remove_if(fishim.begin(), fishim.end(),  [type](Fish* f) { return f->getType() == type; });
 }
 
 std::string Aquarium::debug()

@@ -21,6 +21,6 @@ private:
 	Aquarium();
 	Aquarium(Aquarium const&);
 	void operator=(Aquarium const&);
-	std::vector<Fish> fishim;
+	std::vector<Fish*> fishim;
 };
 #endif

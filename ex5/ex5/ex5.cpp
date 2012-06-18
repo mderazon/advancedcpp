@@ -10,5 +10,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	aqua->add("Gold");
 	aqua->add("Piranha");
 	aqua->add("Salmon");
+	aqua->feed();
 }
 
